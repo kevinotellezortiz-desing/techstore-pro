@@ -297,7 +297,7 @@ a:hover { color: var(--color-secundario); }
   background: var(--color-blanco);
   border: 1px solid var(--color-borde);
   border-radius: var(--radio-grande);
-  overflow: hidden;
+  overflow: visible;
   box-shadow: var(--sombra);
   transition: transform .25s, box-shadow .25s;
   display: flex;
@@ -823,4 +823,127 @@ a:hover { color: var(--color-secundario); }
   .page-header { padding: 40px 16px; }
   .seccion-tarjetas { padding: 40px 16px; }
 
+}
+
+/* ── MODAL PRODUCTO · S06 ─────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.visible {
+  display: flex;
+}
+
+.modal-caja {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+}
+
+.modal-cerrar {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-icono {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.modal-titulo {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1a1a2e;
+}
+
+.modal-desc {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.modal-precio {
+  font-size: 28px;
+  font-weight: 900;
+  color: #39a900;
+  margin-bottom: 20px;
+}
+
+.modal-btn-carrito {
+  background: #39a900;
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+}
+
+.modal-btn-carrito:hover {
+  background: #2d8400;
+}
+
+
+/* ── BARRA DE PROGRESO SCROLL · S06 ──────────────── */
+.barra-scroll {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, #39a900, #ff6b00);
+  z-index: 1000;
+  transition: width 0.1s;
+}
+
+/* ── BADGE HOVER TARJETA · S06 ───────────────────── */
+.tarjeta {
+  position: relative; /* necesario para posicionar el badge */
+}
+
+.badge-disponible {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #39a900;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: none;
+  z-index: 10;
+}
+
+.badge-disponible.visible {
+  display: inline-block;
 }
