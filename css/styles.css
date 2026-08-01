@@ -667,7 +667,7 @@ a:hover { color: var(--color-secundario); }
   border-radius: var(--radio);
   font-size: 15px;
   font-family: inherit;
-  color: var(--color-texto);
+  color: var(--color-oscuro );
   background: var(--color-fondo);
   transition: border-color .2s, box-shadow .2s;
   outline: none;
@@ -975,7 +975,7 @@ a:hover { color: var(--color-secundario); }
 body.tema-oscuro {
   --color-fondo:       #0f172a;
   --color-blanco:      #1e293b;
-  --color-texto:       #e2e8f0;
+  --color-texto:       #808894;
   --color-texto-suave: #94a3b8;
   --color-borde:       #334155;
 }
