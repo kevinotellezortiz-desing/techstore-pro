@@ -27,7 +27,6 @@ router.post('/registro', async (req, res) => {
 });
 
 // 3. post/ api/auth/login - iniciar sesion 
-recibir token
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;

@@ -4,6 +4,8 @@ const express  = require('express');
 const cors     = require('cors');
 const mongoose = require('mongoose');
 const Producto = require('./models/Producto');
+const authRoutes    = require('./routes/auth');        
+const verificarToken = require('./middleware/auth');
 
 // 2. Crear la app y leer el puerto del .env
 const app  = express();
@@ -12,6 +14,10 @@ const PORT = process.env.PORT || 3000;
 // 3. Middlewares
 app.use(cors());
 app.use(express.json());
+
+
+// 11. Rutas de autenticación ← NUEVO S14
+app.use('/api/auth', authRoutes);
 
 // 4. Conectar a MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI)
@@ -29,7 +35,7 @@ app.get('/api/productos', async (req, res) => {
 });
 
 // 6. POST /api/productos — crear producto (NUEVO S13)
-app.post('/api/productos', async (req, res) => {
+app.post('/api/productos', verificarToken, async (req, res) => {
   try {
     const nuevoProducto = await Producto.create(req.body);
     res.status(201).json(nuevoProducto);
@@ -39,7 +45,7 @@ app.post('/api/productos', async (req, res) => {
 });
 
 // 7. PUT /api/productos/:id — actualizar producto (NUEVO S13)
-app.put('/api/productos/:id', async (req, res) => {
+app.put('/api/productos/:id', verificarToken, async (req, res) => {
   try {
     const actualizado = await Producto.findByIdAndUpdate(
       req.params.id, req.body, { new: true }
@@ -52,7 +58,7 @@ app.put('/api/productos/:id', async (req, res) => {
 });
 
 // 8. DELETE /api/productos/:id — eliminar producto (NUEVO S13)
-app.delete('/api/productos/:id', async (req, res) => {
+app.delete('/api/productos/:id', verificarToken, async (req, res) => {
   try {
     const eliminado = await Producto.findByIdAndDelete(req.params.id);
     if (!eliminado) return res.status(404).json({ error: 'Producto no encontrado' });
@@ -75,3 +81,5 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor en http://localhost:${PORT}`);
 });
+
+
