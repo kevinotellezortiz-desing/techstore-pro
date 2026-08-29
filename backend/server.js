@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const Producto = require('./models/Producto');
 const authRoutes    = require('./routes/auth');        
 const verificarToken = require('./middleware/auth');
+const productosRoutes = require('./routes/productos');
+const ordenesRoutes = require('./routes/ordenes');
 
 // 2. Crear la app y leer el puerto del .env
 const app  = express();
@@ -81,5 +83,11 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor en http://localhost:${PORT}`);
 });
+
+// 12. Rutas de productos
+app.use('/api/productos', productosRoutes);
+
+// 13. Rutas de órdenes  ← AGREGAR S15
+app.use('/api/ordenes', ordenesRoutes);  // ← AGREGAR S15
 
 
