@@ -175,7 +175,7 @@ async function cargarProductos() {
   if (!grid) return; // solo correr en páginas que tienen el grid
 
   try {
-    const respuesta = await fetch('data/productos.json');
+    const respuesta = await fetch('http://localhost:3000/api/productos');
 
     // PASO 2 — Leer el contenido del JSON como array JavaScript
     // .json() también es asíncrono → necesita su propio await
